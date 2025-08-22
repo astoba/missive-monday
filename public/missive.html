@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Monday.com Lookup</title>
+    <link href="https://integrations.missiveapp.com/missive.css" rel="stylesheet">
+    <script src="https://integrations.missiveapp.com/missive.js"></script>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 12px;
+            background: #f8f9fa;
+            color: #1c1e21;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        .mv-card {
+            background-color: #ffffff;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 16px;
+        }
+
+        .mv-card-body {
+            padding: 16px;
+        }
+
+        .mv-form-group {
+            margin-bottom: 16px;
+        }
+
+        .mv-form-control {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #d1d5da;
+            border-radius: 6px;
+            font-size: 14px;
+            background-color: #ffffff;
+            box-sizing: border-box;
+        }
+
+        .mv-form-control:focus {
+            outline: none;
+            border-color: #0366d6;
+            box-shadow: 0 0 0 3px rgba(3, 102, 214, 0.1);
+        }
+
+        .mv-text-muted {
+            color: #6c757d;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .mv-list-group {
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #e1e4e8;
+            border-radius: 6px;
+            background-color: #ffffff;
+        }
+
+        .property-results {
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .email-links-container {
+            max-height: 250px;
+            overflow-y: auto;
+        }
+
+        .email-link, .property-result-item {
+            display: block;
+            padding: 12px;
+            text-decoration: none;
+            color: #0366d6;
+            border-bottom: 1px solid #e1e4e8;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .email-link:hover, .property-result-item:hover {
+            background-color: #f6f8fa;
+            text-decoration: none;
+        }
+
+        .email-link:last-child, .property-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .mv-alert {
+            padding: 12px;
+            margin-bottom: 16px;
+            border: 1px solid transparent;
+            border-radius: 6px;
+        }
+
+        .mv-alert-info {
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+            color: #0c5460;
+        }
+
+        .result-summary {
+            padding: 8px;
+            font-size: 12px;
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Property Search Section -->
+        <div id="propertySearchUI" class="mv-form-group">
+            <div class="mv-card">
+                <div class="mv-card-body">
+                    <p class="mv-text-muted">Search properties by address or ID:</p>
+                    <div class="mv-form-group">
+                        <input type="text" id="propertySearchInput" class="mv-form-control" placeholder="Enter property name or ID...">
+                    </div>
+                    <div id="propertySearchResults" class="property-results mv-list-group hidden">
+                        <!-- Property search results will appear here -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Search Section -->
+        <div id="emailDisplayUI" class="hidden">
+            <div class="mv-card">
+                <div class="mv-card-body">
+                    <p class="mv-text-muted">Search Monday.com by email address:</p>
+                    <div id="emailLinksContainer" class="email-links-container mv-list-group">
+                        <!-- Email links will be populated here -->
+                    </div>
+                    <div id="emailSubject" class="mv-alert mv-alert-info hidden"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="statusMessage" class="mv-alert mv-alert-info">Initializing...</div>
+    </div>
+
+    <script src="missive-script.js"></script>
+</body>
+</html>
